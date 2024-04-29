@@ -1,0 +1,5 @@
+https://csnotes-plugins.netlify.app/ online site server.
+For plugin installer.
+
+Unfortunatly there are not plugins for now.
+Come back when there are!
