@@ -16,12 +16,15 @@ class Window:
     def __init__(self, start):
         url = "https://csnotes-plugins.netlify.app/version.txt"
         ext = ".nc"
-        response = requests.get(url)
-        responset = response.text
-        if responset == version:
+        try:
+        	response = requests.get(url)
+        	responset = response.text
+        	if responset == version:
+        		pass
+        	else:
+        		messagebox.showinfo(title="Update Notifier", message="Your CrystalNotes program is not updated.\nGo in the website: https://csnotes-mainwebsite.netlify.app")
+        except:
         	pass
-        else:
-        	messagebox.showinfo(title="Update Notifier", message="Your CrystalNotes program is not updated.\nGo in the website: https://csnotes-mainwebsite.netlify.app")
         def New():
         	if messagebox.askyesno(title="Choice", message="Are you sure?")==True:
         		saved = False
