@@ -1,7 +1,8 @@
 https://csnotes-plugins.netlify.app/ online site server.
 For plugin installer.
 
-Unfortunatly there are not plugins for now.
-Come back when there are!
+codepad--
+A plugin who can give you the ability to code!
+Its not perfect, but its a good plugin.
 
 Hosted by Netlify
