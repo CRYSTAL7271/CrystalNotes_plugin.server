@@ -1,0 +1,183 @@
+from tkinter import *
+from tkinter import messagebox
+from tkinter import filedialog
+from customtkinter import *
+from tkcode import CodeEditor
+from PIL import Image
+import requests
+import os
+import sys
+import time
+
+global version
+version = "1.0b\n"
+# program
+class Window:
+    def __init__(self, start):
+        url = "https://csnotes-plugins.netlify.app/version.txt"
+        ext = ".nc"
+        response = requests.get(url)
+        responset = response.text
+        if responset == version:
+        	pass
+        else:
+        	messagebox.showinfo(title="Update Notifier", message="Your CrystalNotes program is not updated.\nGo in the website: https://csnotes-mainwebsite.netlify.app")
+        def New():
+        	if messagebox.askyesno(title="Choice", message="Are you sure?")==True:
+        		saved = False
+        		text.delete(1.0, END)
+        	else:
+        		pass
+        def Save():
+        	file_s = filedialog.asksaveasfile(defaultextension='.txt',
+        	filetypes=[
+        	('Text File', '.txt'),
+        	("Python File", '.py'),
+        	("C, C++ File", ".c"),
+        	("XML Data File", ".xml"),
+        	("Json Data File", ".json"),
+        	("Website Language File", ".html"),
+        	("Website Style Language File", ".css"),
+        	("Javascript File", ".js"),
+        	("Java File", ".java"),
+        	("All Files", ".*")
+        	])
+        	try:
+        		text_boxt = text.get(1.0,END)
+        		file_s.write(str(text_boxt))
+        		file_s.close()
+        	except:
+        		messagebox.showerror(title="Error in Saving File.", message="File not saved or access refused.")
+        def Open():
+        	try:
+        		o_f=filedialog.askopenfilename()
+        		file = open(o_f, 'r')
+        		text_file = file.read()
+        		text.delete(1.0, END)
+        		text.insert(INSERT, text_file)
+        	except:
+        		pass
+        def Ver():
+        	ns1 = CTk()
+        	ns1.geometry("480x240")
+        	ns1.title("CrystalNotes Versions")
+        	
+        	CTkLabel(ns1,text="All informations:", font=("Arial", 24)).pack()
+        	CTkLabel(ns1, text="Ver: 1.0.0\nMade with: PyDroid3, python, customtkinter\nprogrammed: CrystalStudios\n Project Started: 27 april 2024", font=("Arial", 24)).pack()
+        	
+        	ns1.mainloop()
+        def Settings():
+        	messagebox.showwarning(title="Beta Warning", message="This option is in work.")
+        def apl():
+        	def pylang():
+        		f=open('data/pl.txt', 'w')
+        		f.write('python')
+        		f.close()
+        		messagebox.showinfo(title='Info', message='You have restart the Notepad.')
+        		sys.exit(0)
+        	def clang():
+        		f=open('data/pl.txt', 'w')
+        		f.write('c')
+        		f.close()
+        		messagebox.showinfo(title='Info', message='You have restart the Notepad.')
+        		sys.exit(0)
+        	def jslang():
+        		f=open('data/pl.txt', 'w')
+        		f.write('js')
+        		f.close()
+        		messagebox.showinfo(title='Info', message='You have to restart the Notepad.')
+        		sys.exit(0)
+        	def jvlang():
+        		f=open('data/pl.txt', 'w')
+        		f.write('java')
+        		f.close()
+        		messagebox.showinfo(title='Info', message='You have restart the Notepad.')
+        		sys.exit(0)
+        	def lualang():
+        		f=open('data/pl.txt', 'w')
+        		f.write('lua')
+        		f.close()
+        		messagebox.showinfo(title='Info', message='You have restart the Notepad.')
+        		sys.exit(0)
+        	def jsonlang():
+        		f=open('data/pl.txt', 'w')
+        		f.write('json')
+        		f.close()
+        		messagebox.showinfo(title='Info', message='You have restart the Notepad.')
+        		sys.exit(0)
+        	def nonelang():
+        		f=open('data/pl.txt', 'w')
+        		f.write('none')
+        		f.close()
+        		messagebox.showinfo(title='Info', message='You have restart the Notepad.')
+        		sys.exit(0)
+        	apl=CTk()
+        	apl.geometry("240x580")
+        	apl.title("Programming Languages")
+        	
+        	pbtn = CTkButton(apl, text="Python", command=pylang)
+        	pbtn.pack(pady=2)
+        	clbtn = CTkButton(apl, text="C", command=clang)
+        	clbtn.pack(pady=2)
+        	jsbtn = CTkButton(apl, text="JavaScript", command=jslang)
+        	jsbtn.pack(pady=2)
+        	jvbtn = CTkButton(apl, text="Java", command=jvlang)
+        	jvbtn.pack(pady=2)
+        	luabtn = CTkButton(apl, text="Lua", command=lualang)
+        	luabtn.pack(pady=2)
+        	jsonbtn = CTkButton(apl, text="Json", command=jsonlang)
+        	jsonbtn.pack(pady=2)
+        	nonelbtn = CTkButton(apl, text="Text", command=nonelang)
+        	nonelbtn.pack(pady=2)
+        	apl.mainloop()
+        	
+        	apl.mainloop()
+        if start == False:
+            set_appearance_mode("dark")
+            set_default_color_theme("green")
+            self.screen = CTk()
+            self.screen.title("CrystalNotes")
+            self.screen.geometry("1000x620")
+            
+            cfont = CTkFont(family="Consolas")
+            
+            settings = PhotoImage(file="img/settings.png")
+            op_frame = CTkScrollableFrame(self.screen, width=80, height=580)
+            op_frame.grid()
+            nbutton = CTkButton(op_frame, text="New..", command=New)
+            nbutton.pack(pady=2)
+            sbutton = CTkButton(op_frame, text="Save", command=Save)
+            sbutton.pack(pady=2)
+            obutton = CTkButton(op_frame, text="Open", command=Open)
+            obutton.pack(pady=2)
+            vbutton = CTkButton(op_frame, text="Ver.", command=Ver)
+            vbutton.pack(pady=2)
+            ebutton = CTkButton(op_frame, text="Exit", command=quit)
+            ebutton.pack(pady=50)
+            CTkLabel(op_frame, text="____________").pack()
+            sebutton = CTkButton(op_frame, image=settings, text="", command=Settings)
+            sebutton.pack(pady=2)
+            chlbutton = CTkButton(op_frame, text="Pr.Lang.", command=apl)
+            chlbutton.pack(pady=2)
+            f=open('data/pl.txt', 'r')
+            plft = f.read()
+            f.close()
+            global text
+            if plft == 'none':
+            	text = CTkTextbox(self.screen, width=880, height=580, font=("Arial", 24))
+            	text.place(x=100, y=10)
+            else:
+            	text = CodeEditor(
+            	self.screen,
+            	font=(cfont, 8),
+            	height=19,
+            	width=62,
+            	language=plft
+            )
+            text.place(x=100, y=10)
+            self.screen.mainloop()
+        else:
+            pass
+
+if __name__ == "__main__":
+    Window(False)
