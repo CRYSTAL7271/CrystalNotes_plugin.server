@@ -198,8 +198,6 @@ class Window:
             	set_default_color_theme("green")
             else:
             	set_default_color_theme("blue")
-            set_appearance_mode(color)
-            set_default_color_theme("green")
             self.screen = CTk()
             self.screen.title("CrystalNotes")
             self.screen.geometry("1000x620")
